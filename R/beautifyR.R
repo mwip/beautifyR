@@ -92,9 +92,9 @@ beautifyR <- function(inputstring){
   return(out)
 }
 
-cat("print...\n")
-print(beautifyR(x))
-cat("\n")
-cat("\n")
-cat("cat...\n")
-cat(beautifyR(x))
+# cat("print...\n")
+# print(beautifyR(x))
+# cat("\n")
+# cat("\n")
+# cat("cat...\n")
+# cat(beautifyR(x))

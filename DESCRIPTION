@@ -1,0 +1,10 @@
+Package: beautifyR
+Type: Package
+Title: RStudio Addin to format Markdown tables
+Version: 0.1.0
+Author: Matthias Weigand
+Maintainer: Matthias Weigand <matthias.weigand@protonmail.com>
+Description: Formats tables in Rmd files so all columns align. 
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
