@@ -25,10 +25,15 @@ padCells <- function(ce, al = align, mch = maxChars, mco = maxColumns){
   # "re"transpose list
   ce <- do.call(c, apply(do.call(rbind, ceT), 2, list))
   
-  # TODO refine alignment column (2nd)
-  # ce[[2]] <- 
-  
   # return padded cells
+  return(ce)
+}
+
+refineFormatting <- function(ce, al = align){
+  ce[[2]] <- gsub(".", "-", ce[[2]])
+  ce[[2]][al == "l"] <- gsub("^-", ":", ce[[2]][al =="l"])
+  ce[[2]][al == "c"] <- gsub("^-|-$", ":", ce[[2]][al =="c"])
+  ce[[2]][al == "r"] <- gsub("-$", ":", ce[[2]][al =="r"])
   return(ce)
 }
 
@@ -72,11 +77,14 @@ beautifyR <- function(inputstring){
   # pad cells
   cellsPadded <- padCells(cells, align, maxChars, maxColumns)
   
+  # refine formatting row (2nd)
+  cellsPaddedRefined <- refineFormatting(cellsPadded, align)
+  
   # combine lines
-  linesout <- lapply(cellsPadded, function(x){
-    paste("| ", 
+  linesout <- lapply(cellsPaddedRefined, function(x){
+    paste("|", 
           paste(x, collapse = " | "), 
-          " |")
+          "|")
     })
   
   # create output string
