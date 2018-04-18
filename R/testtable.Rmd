@@ -1,5 +1,17 @@
-
-
+<!-- correct table, just formatting -->
 | column1 | column2 | column3 |
 | :------ | :-------: | -------: |
 |a| another longer string | x |
+
+<!-- empty column -->
+<!-- TODO not yet working correctly (one column too much + no formatting) -->
+| column1 | column2 | column3 |  | 
+| :------ | :-------: | -------: |
+|a| another longer string | x |
+
+
+<!-- missing formatting line -->
+<!-- TODO not yet working correctly (second line is dismissed)-->
+| column1 | column2 | column3 |
+|a| another longer string | x |
+
