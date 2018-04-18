@@ -1,7 +1,9 @@
 # beautifyR
-RStudio addin for formatting Rmarkdown tables
+## RStudio addin for formatting Rmarkdown tables
 
-![example of beautifyR](extra/beautifyR_example.gif)
+---
+
+![example of beautifyR](docs/beautifyR_example.gif)
 
 ## Features
 - Formatting column content flushleft, flushright and centering accordingly
