@@ -1,0 +1,4 @@
+Name: Beautify Table
+Description: Formats a Markdown table.
+Binding: beautifyaddin
+Interactive: false
