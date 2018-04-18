@@ -1,42 +1,5 @@
-library(stringr)
-
-extractAlignment <- function(cells, mc = maxColumns){
-  ind <- cells[[2]]
-
-  # create empty alignment vector
-  align <- rep("l", max(length(ind), mc))
-  align[grepl("-:", ind)] <- "r"
-  align[grepl(":-+:", ind)] <- "c"
-  return(align)
-}
-
-padCells <- function(ce, al = align, mch = maxChars, mco = maxColumns){
-  # transpose list: http://r.789695.n4.nabble.com/transpose-lists-td4660695.html
-  ceT <- do.call(c, apply(do.call(rbind, ce), 2, list))
-
-  # padding from alignment
-  padding <- ifelse(al == "l", "right", ifelse(al == "r", "left", "both"))
-
-  # pad all columns
-  ceT <- lapply(1:length(ceT), function(x){
-    str_pad(string = ceT[[x]], width = mch[x], side = padding[x], pad = " ")
-  })
-
-  # "re"transpose list
-  ce <- do.call(c, apply(do.call(rbind, ceT), 2, list))
-
-  # return padded cells
-  return(ce)
-}
-
-refineFormatting <- function(ce, al = align){
-  ce[[2]] <- gsub(".", "-", ce[[2]])
-  ce[[2]][al == "l"] <- gsub("^-", ":", ce[[2]][al =="l"])
-  ce[[2]][al == "c"] <- gsub("^-|-$", ":", ce[[2]][al =="c"])
-  ce[[2]][al == "r"] <- gsub("-$", ":", ce[[2]][al =="r"])
-  return(ce)
-}
-
+#' @import stringr
+#' @export
 beautifyR <- function(inputstring){
   # split table at "\n"
   lines <- as.list(str_split(inputstring, "\n", simplify = TRUE))
@@ -92,10 +55,3 @@ beautifyR <- function(inputstring){
   out <- paste(unlist(linesout), collapse = "\n")
   return(out)
 }
-
-# cat("print...\n")
-# print(beautifyR(x))
-# cat("\n")
-# cat("\n")
-# cat("cat...\n")
- cat(beautifyR(x))
