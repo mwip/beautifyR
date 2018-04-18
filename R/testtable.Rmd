@@ -2,7 +2,10 @@
 | column1 | column2 | column3 |
 | :------ | :-------: | -------: |
 |a| another longer string | x |
-
+|a string and more|  string | x |
+|a|  string | x |
+|a|  string | x |
+  
 <!-- empty column -->
 <!-- TODO not yet working correctly (one column too much + no formatting) -->
 | column1 | column2 | column3 |  | 
