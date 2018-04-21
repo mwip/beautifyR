@@ -2,10 +2,11 @@
 #' @export
 beautifyR <- function(inputstring){
   # split table at "\n"
-  lines <- as.list(str_split(inputstring, "\n", simplify = TRUE))
+  lines <- as.list(stringr::str_split(inputstring, "\n", simplify = TRUE))
+  lines <- gsub("^ | $", "", lines)
 
   # split lines at "|"
-  cells <- lapply(str_split(lines, "\\|"), function(x){
+  cells <- lapply(stringr::str_split(lines, "\\|"), function(x){
     x[x != ""]
   })
 
@@ -14,11 +15,10 @@ beautifyR <- function(inputstring){
   maxColumns <- do.call(max, ncolumns)
 
   # if no or false alignment row is given return left-aligned and show warning
-  #TODO Not working yet
-  if (!any(!grepl("[^:|-|[[:blank:]]]", cells[[2]]))){
+  if (any(stringr::str_detect(cells[[2]], "[^:-[[:blank:]]]"))){
     cells <- append(cells, list(rep(":-", maxColumns)), 1)
-    warning("Fomatting indicator row 2 (e.g. :----) contains invalid values
-             left alignment assumed for all columns")
+    warning("Fomatting indicator row 2 (e.g. :----) contains invalid values or is not available
+  left alignment assumed for all columns", immediate. = TRUE)
   }
 
   # extract or assume the column alignment (left, center, right)
@@ -35,8 +35,12 @@ beautifyR <- function(inputstring){
     do.call(max, lapply(chars, `[`, x))
   })
 
+  # Increase too low number of chars
+  maxChars[is.na(maxChars)| maxChars < 3] <- 3
+
   ## build output table
   # TODO insert missing columns
+
 
   # pad cells
   cellsPadded <- padCells(cells, align, maxChars, maxColumns)

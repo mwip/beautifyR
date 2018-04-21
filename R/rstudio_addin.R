@@ -1,5 +1,5 @@
 #' Beatuify Addin
-#'
+#' @import rstudioapi
 #' @keywords internal
 
 beautifyaddin <- function(){
