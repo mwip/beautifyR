@@ -13,6 +13,9 @@ Column was created left-aligned", immediate. = TRUE)
     }
   })
 
+  # reset formatting column ~~ needed for shrinking
+  ce[[2]] <- rep("---", mco)
+
   # transpose list: http://r.789695.n4.nabble.com/transpose-lists-td4660695.html
   ceT <- do.call(c, apply(do.call(rbind, ce), 2, list))
 

@@ -16,3 +16,12 @@
 <!-- missing formatting line -->
 | column1 | column2 | column3 |
 |a| another longer string | x |
+
+
+<!-- shrink column -->
+| column1           |        column2        |  column3 |
+| :---------------- | :-------------------: | -------: |
+| a                 | another longer |        x |
+| a string and more |        string         |        x |
+| a                 |        string         |        x |
+| a                 |        string         |        x |

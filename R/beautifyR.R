@@ -32,16 +32,15 @@ beautifyR <- function(inputstring){
   # extract maximum characters per column
   chars <- lapply(cells, nchar)
   maxChars <- sapply(1:maxColumns, function(x){
-    do.call(max, lapply(chars, `[`, x))
+    # chars[-c(2)] will exclude the formatting line from the determination of
+    # the column width
+    do.call(max, lapply(chars[-c(2)], `[`, x))
   })
 
   # Increase too low number of chars
   maxChars[is.na(maxChars)| maxChars < 3] <- 3
 
   ## build output table
-  # TODO insert missing columns
-
-
   # pad cells
   cellsPadded <- padCells(cells, align, maxChars, maxColumns)
 
