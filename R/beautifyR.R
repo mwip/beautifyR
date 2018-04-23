@@ -1,4 +1,10 @@
+#' Beautify RMarkdown tables
+#'
+#' This function beautifys RMarkdown tables in terms of columnwidths, alignment,
+#' missing columns and rows. It is called by the beautifyR RStudio addin.
+#'
 #' @import stringr
+#' @param inputstring Charactervector of length 1 containing a RMarkdown table.
 #' @export
 beautifyR <- function(inputstring){
   # split table at "\n"

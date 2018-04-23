@@ -1,5 +1,14 @@
-#' @import stringr
+#' paddCells
 #'
+#' Function to padd cells according to the column width
+#'
+#' @param ce list of table cells as created by `beautifyR`
+#' @param al alignment vector as created by `extractAlignment`
+#' @param mch maximum number of characters in each column (defines the column
+#' width)
+#' @param mco number of columns in the table
+#' @import stringr
+#' @keywords internal
 #' @export
 padCells <- function(ce = cells, al = align, mch = maxChars, mco = maxColumns){
   # fill missing cells with space

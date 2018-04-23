@@ -1,4 +1,8 @@
 #' Beatuify Addin
+#'
+#' Addin for beautifyR. It collects the selected markdown table and hands it off
+#' to the `beautifyR` function.
+#'
 #' @import rstudioapi
 #' @keywords internal
 

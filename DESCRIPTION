@@ -12,3 +12,4 @@ LazyData: true
 Imports:
   stringr (>= 1.3.0),
   rstudioapi (>= 0.7)
+RoxygenNote: 6.0.1
