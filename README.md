@@ -26,3 +26,4 @@ If you encounter any bugs, please report them as an
 ### Insert missing formatting 
 ![example of beautifyR 3](docs/beautifyR_missing_formatting.gif)
 
+*GIFs generated with [Peek](https://github.com/phw/peek).* 
