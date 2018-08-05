@@ -8,11 +8,12 @@
 #' @export
 beautifyR <- function(inputstring){
   # split table at "\n"
-  lines <- as.list(stringr::str_split(inputstring, "\n", simplify = TRUE))
-  lines <- gsub("^ | $", "", lines)
+  lns <- as.list(stringr::str_split(inputstring, "\n", simplify = TRUE))
+  lns <- lns[unlist(lapply(lns, function(x){x != ""}))]
+  lns <- gsub("^ | $", "", lns)
 
   # split lines at "|"
-  cells <- lapply(stringr::str_split(lines, "\\|"), function(x){
+  cells <- lapply(stringr::str_split(lns, "\\|"), function(x){
     x[x != ""]
   })
 
