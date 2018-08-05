@@ -9,8 +9,15 @@
 beautifyR <- function(inputstring){
   # split table at "\n"
   lns <- as.list(stringr::str_split(inputstring, "\n", simplify = TRUE))
+  # ignore empty lines
   lns <- lns[unlist(lapply(lns, function(x){x != ""}))]
   lns <- gsub("^ | $", "", lns)
+  
+  # ignore markdown comments (and keep backup)
+  commentsBU <- data.frame(com = lns[grepl("<!--.*-->", lns)], 
+                           whichLine = grep("<!--.*-->", lns), 
+                           stringsAsFactors = FALSE)
+  lns <- lns[!grepl("<!--.*-->", lns)]
 
   # split lines at "|"
   cells <- lapply(stringr::str_split(lns, "\\|"), function(x){
@@ -60,7 +67,13 @@ beautifyR <- function(inputstring){
           paste(x, collapse = " | "),
           "|")
     })
-
+  
+  # insert comments from input 
+  for (i in 1:nrow(commentsBU)){
+    linesout <- append(linesout, list(commentsBU[i,1]), commentsBU[i,2] - 1)
+  }
+  
+  
   # create output string
   out <- paste(unlist(linesout), collapse = "\n")
   return(out)
