@@ -1,8 +1,8 @@
 Package: beautifyR
 Type: Package
 Title: RStudio Addin to format Markdown tables
-Version: 0.2.0
-Date: 2018-04-04
+Version: 0.2.1
+Date: 2018-11-24
 Author: Matthias Weigand
 Maintainer: Matthias Weigand <matthias.weigand@protonmail.com>
 Description: Formats tables in Rmd files so all columns align. 
