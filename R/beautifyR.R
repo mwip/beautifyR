@@ -69,8 +69,10 @@ beautifyR <- function(inputstring){
     })
   
   # insert comments from input 
-  for (i in 1:nrow(commentsBU)){
-    linesout <- append(linesout, list(commentsBU[i,1]), commentsBU[i,2] - 1)
+  if (nrow(commentsBU)>0){
+    for (i in 1:nrow(commentsBU)){
+      linesout <- append(linesout, list(commentsBU[i,1]), commentsBU[i,2] - 1)
+    }
   }
   
   
