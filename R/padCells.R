@@ -10,10 +10,10 @@
 #' @import stringr
 #' @keywords internal
 #' @export
-padCells <- function(ce = cells, al = align, mch = maxChars, mco = maxColumns){
+padCells <- function(ce = cells, al = align, mch = maxChars, mco = maxColumns) {
   # fill missing cells with space
-  ce <- lapply(ce, function(x){
-    if (length(x)<mco){
+  ce <- lapply(ce, function(x) {
+    if (length(x) < mco) {
       warning("Empty columns were found.
 Column was created left-aligned", immediate. = TRUE)
       c(x, rep(" ", mco - length(x)))
@@ -32,7 +32,7 @@ Column was created left-aligned", immediate. = TRUE)
   padding <- ifelse(al == "l", "right", ifelse(al == "r", "left", "both"))
 
   # pad all columns
-  ceT <- lapply(1:length(ceT), function(x){
+  ceT <- lapply(1:length(ceT), function(x) {
     stringr::str_pad(string = ceT[[x]], width = mch[x],
                      side = padding[x], pad = " ")
   })
