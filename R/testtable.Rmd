@@ -25,3 +25,7 @@
 | a string and more |        string         |        x |
 | a                 |        string         |        x |
 | a                 |        string         |        x |
+
+<!-- testing recusion: should be correct after applying the function ONCE -->
+| Some stuff | in | a | table |
+|oaslkjf|olaksjf|olkjdsf|

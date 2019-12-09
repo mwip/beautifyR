@@ -67,7 +67,16 @@ beautifyR <- function(inputstring){
           paste(x, collapse = " | "),
           "|")
     })
-
+  
+  # recursively iterate if something got messed up
+  # !! possible source of stack overflow !!
+  # nocommentlines <- linesout[sapply(linesout, grepl, "<!--.*-->")]
+  if (length(unique(sapply(linesout, nchar))) != 1){
+    tmp <- paste(unlist(linesout), collapse = "\n")
+    tmp <- beautifyR(tmp)
+    linesout <- as.list(stringr::str_split(tmp, "\n"))
+  }
+  
   # insert comments from input
   if (nrow(commentsBU) > 0) {
     for (i in 1:nrow(commentsBU)) {
@@ -77,5 +86,6 @@ beautifyR <- function(inputstring){
 
   # create output string
   out <- paste(unlist(linesout), collapse = "\n")
+
   return(out)
 }
