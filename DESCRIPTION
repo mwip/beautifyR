@@ -1,7 +1,7 @@
 Package: beautifyR
 Type: Package
 Title: RStudio Addin to format Markdown tables
-Version: 0.2.1
+Version: 0.2.2
 Date: 2018-11-24
 Author: Matthias Weigand
 Maintainer: Matthias Weigand <matthias.weigand@protonmail.com>
