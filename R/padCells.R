@@ -10,7 +10,7 @@
 #' @import stringr
 #' @keywords internal
 #' @export
-padCells <- function(ce = cells, al = align, mch = maxChars, mco = maxColumns) {
+padCells <- function(ce, al, mch, mco) {
   # fill missing cells with space
   ce <- lapply(ce, function(x) {
     if (length(x) < mco) {

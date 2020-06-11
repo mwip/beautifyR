@@ -7,7 +7,7 @@
 #' @param al alignment vector as created by `extractAlignment`
 #' @keywords internal
 #' @export
-refineFormatting <- function(ce, al = align){
+refineFormatting <- function(ce, al){
   ce[[2]][is.na(ce[[2]])] <- " "
   ce[[2]] <- gsub(".", "-", ce[[2]])
   ce[[2]][al == "l"] <- gsub("^-", ":", ce[[2]][al == "l"])

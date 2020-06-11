@@ -4,7 +4,7 @@
 \alias{extractAlignment}
 \title{Extract Alignment from list of RMarkdown table cells cells}
 \usage{
-extractAlignment(cells, mc = maxColumns)
+extractAlignment(cells, mc)
 }
 \arguments{
 \item{cells}{list of markdown cells created within `beautifyR`}

@@ -9,7 +9,7 @@
 #' `beautifyR`
 #' @keywords internal
 #' @export
-extractAlignment <- function(cells, mc = maxColumns){
+extractAlignment <- function(cells, mc){
   ind <- cells[[2]]
 
   # create empty alignment vector

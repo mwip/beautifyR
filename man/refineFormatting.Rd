@@ -4,7 +4,7 @@
 \alias{refineFormatting}
 \title{refineFomatting}
 \usage{
-refineFormatting(ce, al = align)
+refineFormatting(ce, al)
 }
 \arguments{
 \item{ce}{list of table cells as created by `beautifyR`}

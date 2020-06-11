@@ -4,7 +4,7 @@
 \alias{padCells}
 \title{paddCells}
 \usage{
-padCells(ce = cells, al = align, mch = maxChars, mco = maxColumns)
+padCells(ce, al, mch, mco)
 }
 \arguments{
 \item{ce}{list of table cells as created by `beautifyR`}
