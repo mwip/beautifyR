@@ -1,4 +1,4 @@
-#' Beatuify Addin
+#' Beatuify Table Addin
 #'
 #' Addin for beautifyR. It collects the selected markdown table and hands it off
 #' to the `beautifyR` function.
@@ -6,7 +6,7 @@
 #' @import rstudioapi
 #' @keywords internal
 
-beautifyaddin <- function(){
+beautifytableaddin <- function(){
   con <- rstudioapi::getActiveDocumentContext()
 
   # Get selection text

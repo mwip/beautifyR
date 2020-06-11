@@ -1,4 +1,9 @@
 Name: Beautify Table
 Description: Formats a Markdown table.
-Binding: beautifyaddin
+Binding: beautifytableaddin
+Interactive: false
+
+Name: Beautify Comment
+Description: Formats multiline comments starting with #' or # to fit the 80 column margin.
+Binding: beautifycommentaddin
 Interactive: false
