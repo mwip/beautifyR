@@ -11,3 +11,7 @@ for (i in 1:10) {
 
 #' another multiline comment another multiline comment another multiline
 #' comment another multiline comment another multiline comment"
+
+# This is my dash-dash word. And this right here is inline code
+# `r mean(c(1, 2))` that is separated into two lines when beautifying this
+# comment.
