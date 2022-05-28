@@ -26,7 +26,7 @@ beautifyComment <- function(inputstring){
     lines_tmp_uncommented <- str_replace(lines_tmp, "^#'? ?", "")
     
     # split the lines in all the words
-    words <- unlist(str_split(lines_tmp_uncommented, " |-"))
+    words <- unlist(str_split(lines_tmp_uncommented, " "))
     
     # drop empty entries
     words <- words[nchar(words) > 0]
