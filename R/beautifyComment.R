@@ -36,7 +36,7 @@ beautifyComment <- function(inputstring){
       stck <- tail(stck, length(stck) - 1) # constantly overwriting is slow but does the trick...
       
       # check for the beginning of inline-code elements
-      if (str_detect(tmp_word, "^`\\w*")) {
+      if (str_detect(tmp_word, "^`\\w*") & !str_detect(tmp_word, "`\\b[[:graph:]]*\\b`")) {
         # add "words" to the current word until the next backtick is hit
         while (length(stck) > 0) {
           # get the next word
@@ -119,7 +119,7 @@ beautifyComment <- function(inputstring){
                         }
 
                         # combine lines according to their indexes
-                        if (min(groups[[x]]) < min(groups_no_comment[[x]])) {
+                        if (min(groups[[x]]) < suppressWarnings(min(groups_no_comment[[x]]))) {
                           return(c(lines_aligned[[x]], 
                                    lines[groups_no_comment[[x]]]))
                         } else {
