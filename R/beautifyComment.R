@@ -25,8 +25,35 @@ beautifyComment <- function(inputstring){
     # remove all comment chars
     lines_tmp_uncommented <- str_replace(lines_tmp, "^#'? ?", "")
     
-    # split the lines in all the words
-    words <- unlist(str_split(lines_tmp_uncommented, " |-"))
+    # handle inline-code elements see https://github.com/mwip/beautifyR/issues/10
+    # split the lines in all the words into a stack
+    stck <- unlist(str_split(lines_tmp_uncommented, "\\s+"))
+    stck_specials_fixed <- NULL
+    # iterate over stack in order to catch some special cases for which the words will be reunited
+    while (length(stck) > 0) {
+      # pop current next word
+      tmp_word <- stck[1]
+      stck <- tail(stck, length(stck) - 1) # constantly overwriting is slow but does the trick...
+      
+      # check for the beginning of inline-code elements
+      if (str_detect(tmp_word, "^`\\w*") & !str_detect(tmp_word, "`\\b[[:graph:]]*\\b`")) {
+        # add "words" to the current word until the next backtick is hit
+        while (length(stck) > 0) {
+          # get the next word
+          tmp_word_2 <- stck[1]
+          stck <- tail(stck, length(stck) - 1) # constantly overwriting ... dito
+          # add to current word
+          tmp_word<- str_c(tmp_word, tmp_word_2, sep = " ")
+          # break if ending backtick is found
+          if (str_detect(tmp_word_2, "\\w*`$")) {
+            break
+          }
+        }
+      }
+      stck_specials_fixed <- c(stck_specials_fixed, tmp_word)
+      # possibly add more special cases in the future
+    }
+    words <- stck_specials_fixed
     
     # drop empty entries
     words <- words[nchar(words) > 0]
@@ -92,7 +119,7 @@ beautifyComment <- function(inputstring){
                         }
 
                         # combine lines according to their indexes
-                        if (min(groups[[x]]) < min(groups_no_comment[[x]])) {
+                        if (min(groups[[x]]) < suppressWarnings(min(groups_no_comment[[x]]))) {
                           return(c(lines_aligned[[x]], 
                                    lines[groups_no_comment[[x]]]))
                         } else {
