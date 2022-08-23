@@ -34,9 +34,12 @@ beautifyComment <- function(inputstring){
       # pop current next word
       tmp_word <- stck[1]
       stck <- tail(stck, length(stck) - 1) # constantly overwriting is slow but does the trick...
-      
+
       # check for the beginning of inline-code elements
-      if (str_detect(tmp_word, "^`\\w*") & !str_detect(tmp_word, "`\\b[[:graph:]]*\\b`")) {
+      if (
+        str_detect(tmp_word, "^`\\w*") &
+        !str_detect(tmp_word, "\\S+`") # \S referring to non-whitespace characters
+      ) {
         # add "words" to the current word until the next backtick is hit
         while (length(stck) > 0) {
           # get the next word
@@ -45,7 +48,7 @@ beautifyComment <- function(inputstring){
           # add to current word
           tmp_word<- str_c(tmp_word, tmp_word_2, sep = " ")
           # break if ending backtick is found
-          if (str_detect(tmp_word_2, "\\w*`$")) {
+          if (str_detect(tmp_word_2, "\\S+`$")) {
             break
           }
         }
@@ -75,7 +78,13 @@ beautifyComment <- function(inputstring){
       charcount_df$cumsum <- cumsum(charcount_df$charcount + 1)
       
       # create index for subsetting
+      # TODO remove hardcoded 80 column and get it dynamically based on margin
       words_to_add <- charcount_df$cumsum < (80 - (nchar(comment_char) + 1))
+      
+      # add at least one word if it is too long
+      if (sum(words_to_add) == 0) {
+        words_to_add[1] <-  TRUE
+      }
       
       # identify words that can be added to the new line
       new_line_word_idx[[length(new_line_word_idx) + 1]] <- 
@@ -83,13 +92,6 @@ beautifyComment <- function(inputstring){
       
       # remove words from the data frame
       charcount_df <- charcount_df[!words_to_add, ]
-      
-      # add at least one word if it is too long
-      if (sum(words_to_add) == 0){
-        new_line_word_idx[[length(new_line_word_idx) + 1]] <- 
-          charcount_df$idx[1]
-        charcount_df <- charcount_df[-1, ]
-      }
       
     }
     

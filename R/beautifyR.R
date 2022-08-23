@@ -31,8 +31,8 @@ beautifyR <- function(inputstring){
   # if no or false alignment row is given return left-aligned and show warning
   if (any(stringr::str_detect(cells[[2]], "[^:-[[:blank:]]]"))) {
     cells <- append(cells, list(rep(":-", maxColumns)), 1)
-    warning("Fomatting indicator row 2 (e.g. :----) contains invalid values or is not available
-  left alignment assumed for all columns", immediate. = TRUE)
+    message("Fomatting indicator row 2 (e.g. :----) contains invalid values or is not available
+  left alignment assumed for all columns")
   }
 
   # extract or assume the column alignment (left, center, right)

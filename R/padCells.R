@@ -14,8 +14,8 @@ padCells <- function(ce, al, mch, mco) {
   # fill missing cells with space
   ce <- lapply(ce, function(x) {
     if (length(x) < mco) {
-      warning("Empty columns were found.
-Column was created left-aligned", immediate. = TRUE)
+      message("Empty columns were found.
+Column was created left-aligned")
       c(x, rep(" ", mco - length(x)))
     } else {
       x
