@@ -52,3 +52,18 @@ test_that("testing recusion: should be correct after applying the function ONCE"
 | oaslkjf    | olaksjf | olkjdsf |       |"
   expect_equal(beautifyR(inputstring), outputstring)
 })
+
+
+test_that("testing unicode width: unicode characters are sometimes wider than one cell", {
+  inputstring <- "Analysis | Hypothesis testing | Estimation
+------------------ | ---------- | ---------
+t-test | ✅ | ✅
+one-way ANOVA | ✅ |✅
+correlation | ✅ | ✅"
+  outputstring <- "| Analysis      | Hypothesis testing | Estimation |
+| :------------ | :----------------- | :--------- |
+| t-test        | ✅                 | ✅         |
+| one-way ANOVA | ✅                 | ✅         |
+| correlation   | ✅                 | ✅         |" 
+  expect_equal(beautifyR(inputstring), outputstring)
+})

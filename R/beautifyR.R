@@ -4,6 +4,7 @@
 #' missing columns and rows. It is called by the beautifyR RStudio addin.
 #'
 #' @import stringr
+#' @import stringi
 #' @param inputstring Charactervector of length 1 containing a RMarkdown table.
 #' @export
 beautifyR <- function(inputstring){
@@ -44,7 +45,7 @@ beautifyR <- function(inputstring){
   })
 
   # extract maximum characters per column
-  chars <- lapply(cells, nchar)
+  chars <- lapply(cells, stri_width)
   maxChars <- sapply(1:maxColumns, function(x) {
     # chars[-c(2)] will exclude the formatting line from the determination of
     # the column width
@@ -71,7 +72,7 @@ beautifyR <- function(inputstring){
   # recursively iterate if something got messed up
   # !! possible source of stack overflow !!
   # nocommentlines <- linesout[sapply(linesout, grepl, "<!--.*-->")]
-  if (length(unique(sapply(linesout, nchar))) != 1){
+  if (length(unique(sapply(linesout, stri_width))) != 1){
     tmp <- paste(unlist(linesout), collapse = "\n")
     tmp <- beautifyR(tmp)
     linesout <- as.list(stringr::str_split(tmp, "\n"))
